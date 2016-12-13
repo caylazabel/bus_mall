@@ -18,9 +18,23 @@ function Images (filepath, nickname){
 };
 
 function imagePlacement(){
-  left.src = allProducts[Math.floor(Math.random() * 20)].location;
-  center.src = allProducts[Math.floor(Math.random() * 20)].location;
-  right.src = allProducts[Math.floor(Math.random() * 20)].location;
+  var leftt = allProducts[Math.floor(Math.random() * 20)];
+  var centerr = allProducts[Math.floor(Math.random() * 20)];
+  var rightt = allProducts[Math.floor(Math.random() * 20)];
+
+  // console.log(leftt.location);
+  // console.log(centerr.location);
+  // console.log(rightt.location);
+
+  while (leftt === centerr || leftt === rightt || rightt === centerr){
+  leftt = allProducts[Math.floor(Math.random() * 20)];
+  centerr = allProducts[Math.floor(Math.random() * 20)];
+  rightt = allProducts[Math.floor(Math.random() * 20)];
+}
+
+  left.src = leftt.location;
+  center.src = centerr.location;
+  right.src = rightt.location;
 }
 
 //objects//
@@ -47,17 +61,8 @@ new Images('images/wine-glass.jpg', 'wineglass');
 
 
 imagePlacement();
-//for loop
-// for (var i = 0; i < imageNames.length; i++){
-//   imagesArray.push(new Image(imageNames[i]));
-// }
 
-// function createRandomImage(){
-//   if(totalClicks < 25){
-//     var randImage1 = randomImage();
-//     var randImage2 = randomImage();
-//     var randImage3 = randomImage();
-// // no duplicates//
+
 //     while (randImage1 === randImage2 || randImage1 === randImage3){
 //       randImage1 = randomImage();
 //     }
