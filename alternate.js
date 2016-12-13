@@ -1,7 +1,7 @@
 'use strict';
 
 
-var picContainer = document.getElementById('pic-container');
+var picContainer = document.getElementById('picContainer');
 var left = document.getElementById('left');
 var center = document.getElementById('center');
 var right = document.getElementById('right');
@@ -66,7 +66,7 @@ function arrayOfThreeNumbers() {
 
 
 
-function showThreePics() {
+function createThreePics() {
   arrayOfThreeNumbers();
 
   left.src = allProducts[newArray[0]].filepath;
@@ -78,46 +78,34 @@ function showThreePics() {
 
 }
 
-// function renderList() {
-//   // display a list of items and total clicks/views
-// }
-
-
-
 function handleClick(event) {
   event.preventDefault();
-  // identify who was clicked
-  // console.log(event.target, 'was clicked');
-  // alert for clicks not on images
-  if(event.target.id === 'pic-container'){
+
+  if(event.target.id === 'picContainer'){
     return alert('Click on a picture! Not the Background!');
   }
   if (event.target.id === 'left'){
     allProducts[newArray[0]].clicks += 1;
-    console.log(allProducts[newArray[0]]);
   }
 
   if (event.target.id === 'center'){
     allProducts[newArray[1]].clicks += 1;
-    console.log(allProducts[newArray[1]]);
   }
 
   if (event.target.id === 'right'){
     allProducts[newArray[2]].clicks += 1;
-    console.log(allProducts[newArray[2]]);
   }
-  // tally the click
+
   clickCounter += 1;
 
-  // check whether total clicks <25
   if (clickCounter > 5){
-    return('You outta click!')
+    return('You ran out of clicks!')
   }
   // after 25, remove event listeners on picNames
   // after 25, show "Results" button
   // clear old images
   // display 3 new images
-  showThreePics();
+  createThreePics();
 }
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
@@ -126,5 +114,5 @@ function handleClick(event) {
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 
-showThreePics();
-picContainer.allEventListener('click', handleClick);
+createThreePics();
+picContainer.addEventListener('click', handleClick);
