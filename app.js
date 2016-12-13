@@ -2,6 +2,8 @@
 
 var totalClicks = 0;
 var allProducts = [ ];
+
+//dom variables//
 var container = document.getElementById('image_container');
 var left = document.getElementById('left');
 var center = document.getElementById('center');
