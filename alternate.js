@@ -80,6 +80,14 @@ function createThreePics() {
 
 }
 
+// function renderList(){
+//   for (var i = 0; i < allProducts.length; i++){
+//     viewed[i] = allProducts[i].views;
+//     clicked[i] = allProducts[i].clicks;
+//   }
+// };
+
+
 function handleClick(event) {
   event.preventDefault();
 
@@ -101,8 +109,9 @@ function handleClick(event) {
   clickCounter += 1;
 
   if (clickCounter > 25){
-    return('You ran out of clicks!')
+    return alert('You ran out of clicks!')
   }
+
   // after 25, remove event listeners on picNames
   // after 25, show "Results" button
   // clear old images
@@ -124,6 +133,13 @@ picContainer.addEventListener('click', handleClick);
 //
 // var showButton = document.getElementById('displayButton');
 // showButton.addEventListener('click', displayChart);
+
+//
+// if (clickCounter === 25){
+//   picContainer.remonveEventListener('click', handleClick);
+//   return alert('You ran out of clicks!'); S
+
+
 
 var displayChart = document.getElementById("myChart").getContext("2d");
 var createChart = new Chart (displayChart, {
