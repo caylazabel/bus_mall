@@ -12,6 +12,8 @@ var names = ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulh
 var newArray = [];
 var oldArray = [];
 var clickCounter = 0;
+var clicked = [];
+var viewed =[];
 
 // Global variables
 // -----------------
@@ -118,36 +120,124 @@ createThreePics();
 picContainer.addEventListener('click', handleClick);
 
 
+//chart below//
+//
+// var showButton = document.getElementById('displayButton');
+// showButton.addEventListener('click', displayChart);
 
-// make chart below
-function createChart (){
-  function productNames () {
-    var names = [];
-    for(var i = 0; i < allProducts.length; i++){
-      names.push(allProducts[i]);
-    }
-    return names;
-  }
-}
-
-
-function getClicks() {
-  var amountOfClicks = [];
-  for(var i = 0; i < allProducts.length; i++){
-    amountOfClicks.push(allProducts[i].clickCounter);
-    return amountOfClicks;
-  }
-}
-
-var chartData = {
-  labels: productNames (),
-    datasets: [{
-    backgroundColor: 'rgb(149, 192, 253)',
-    label: 'Results',
-    data: getClicks(),
-  }],
-}
 var displayChart = document.getElementById("myChart").getContext("2d");
-new Chart.Bar(displayChart,{
-  data: chartData
+var createChart = new Chart (displayChart, {
+  type: 'bar',
+  data: {
+    labels: ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+    datasets: [{
+      label: 'Number of Clicks',
+      yAxisGroup: '1',
+      data: clicked,
+      backgroundColor: [
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+        'rgb(128, 223, 255)',
+      ],
+      borderColor: [
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+        'rgb(0, 51, 102)',
+      ],
+      borderWidth: 1,
+    },{
+      label: 'Number of Views',
+      type: "bar",
+      yAxisGroup: "2",
+      data: viewed,
+      backgroundColor: [
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+        'rgb(26, 255, 102)',
+      ],
+      borderColor: [
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+        'rgb(0, 102, 34)',
+      ],
+      borderWidth: 1,
+    }]
+  },
+  options: {
+    scales: {
+      yAxis: [{
+        ticks: {
+          beginAtZero:true
+        }
+      }]
+    }
+  }
 });
