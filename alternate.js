@@ -8,7 +8,7 @@ var right = document.getElementById('right');
 
 
 var allProducts = [];
-var names = ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
+var names = ['bag', 'banana', 'breakfast', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep','scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 var newArray = [];
 var oldArray = [];
 var clickCounter = 0;
@@ -27,10 +27,6 @@ function Product(name) {
   this.clicks = 0;
   this.views = 0;
   allProducts.push(this);
-}
-
-for(var i = 0; i < names.length; i++){
-  new Product(names[i]);
 }
 
 function rand() {
@@ -110,23 +106,24 @@ function handleClick(event) {
 
   if (clickCounter > 25){
     return alert('You ran out of clicks!')
+    // picContainer.removeEventListener('click', handleClick);
   }
-
+  // localStorage.setItem('allProducts', JSON.stringify(allProducts));
+  
   // after 25, remove event listeners on picNames
   // after 25, show "Results" button
   // clear old images
   // display 3 new images
   createThreePics();
 }
+
+
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 // CODE THAT RUNS ON PAGE LOAD
 // (EXECUTE ACTIONS)
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
-
-createThreePics();
-picContainer.addEventListener('click', handleClick);
 
 
 //chart below//
@@ -141,119 +138,134 @@ picContainer.addEventListener('click', handleClick);
 
 
 
-var displayChart = document.getElementById("myChart").getContext("2d");
-var createChart = new Chart (displayChart, {
-  type: 'bar',
-  data: {
-    labels: ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
-    datasets: [{
-      label: 'Number of Clicks',
-      yAxisGroup: '1',
-      data: clicked,
-      backgroundColor: [
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-        'rgb(128, 223, 255)',
-      ],
-      borderColor: [
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-        'rgb(0, 51, 102)',
-      ],
-      borderWidth: 1,
-    },{
-      label: 'Number of Views',
-      type: "bar",
-      yAxisGroup: "2",
-      data: viewed,
-      backgroundColor: [
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-        'rgb(26, 255, 102)',
-      ],
-      borderColor: [
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-        'rgb(0, 102, 34)',
-      ],
-      borderWidth: 1,
-    }]
-  },
-  options: {
-    scales: {
-      yAxis: [{
-        ticks: {
-          beginAtZero:true
-        }
-      }]
-    }
+// var displayChart = document.getElementById("myChart").getContext("2d");
+// var createChart = new Chart (displayChart, {
+//   type: 'bar',
+//   data: {
+//     labels: ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+//     datasets: [{
+//       label: 'Number of Clicks',
+//       yAxisGroup: '1',
+//       data: clicked,
+//       backgroundColor: [
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//         'rgb(128, 223, 255)',
+//       ],
+//       borderColor: [
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//         'rgb(0, 51, 102)',
+//       ],
+//       borderWidth: 1,
+//     },{
+//       label: 'Number of Views',
+//       type: "bar",
+//       yAxisGroup: "2",
+//       data: viewed,
+//       backgroundColor: [
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//         'rgb(26, 255, 102)',
+//       ],
+//       borderColor: [
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//         'rgb(0, 102, 34)',
+//       ],
+//       borderWidth: 1,
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       yAxis: [{
+//         ticks: {
+//           beginAtZero:true
+//         }
+//       }]
+//     }
+//   }
+// });
+
+if (localStorage.allProducts) {
+  allProducts = JSON.parse(localStorage.allProducts);
+} else {
+  alert('work');
+  for (var j = 0; j < names.length; j++) {
+    new Product(names[j])
   }
-});
+  var allProductsStringified = JSON.stringify(allProducts);
+  localStorage.setItem('allProducts', allProductsStringified);
+}
+
+createThreePics();
+
+picContainer.addEventListener('click', handleClick);
