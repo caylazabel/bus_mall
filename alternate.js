@@ -5,6 +5,9 @@ var picContainer = document.getElementById('picContainer');
 var left = document.getElementById('left');
 var center = document.getElementById('center');
 var right = document.getElementById('right');
+var displayButton = document.getElementById('display-button');
+var ctx = document.getElementById('myChart');
+
 
 
 var allProducts = [];
@@ -76,14 +79,6 @@ function createThreePics() {
 
 }
 
-// function renderList(){
-//   for (var i = 0; i < allProducts.length; i++){
-//     viewed[i] = allProducts[i].views;
-//     clicked[i] = allProducts[i].clicks;
-//   }
-// };
-
-
 function handleClick(event) {
   event.preventDefault();
 
@@ -104,17 +99,30 @@ function handleClick(event) {
 
   clickCounter += 1;
 
-  if (clickCounter > 25){
-    return alert('You ran out of clicks!')
+
+
+  if (clickCounter < 25){
+    createThreePics();
+  } else {
+
+      document.getElementById('display-button').style.visibility = 'visible';
+      return alert('You outta clicks dude!');
+    }
+
     // picContainer.removeEventListener('click', handleClick);
-  }
+
   // localStorage.setItem('allProducts', JSON.stringify(allProducts));
-  
+
   // after 25, remove event listeners on picNames
   // after 25, show "Results" button
   // clear old images
   // display 3 new images
   createThreePics();
+}
+
+function handleGenerateButton() {
+  renderList();
+  makeChart ();
 }
 
 
@@ -127,133 +135,76 @@ function handleClick(event) {
 
 
 //chart below//
-//
-// var showButton = document.getElementById('displayButton');
-// showButton.addEventListener('click', displayChart);
+function myImageNames () {
+  var names = [];
+  for(var i = 0; i < allProducts.length; i++) {
+    names.push(allProducts[i].name);
+  }
+  return names;
+}
 
-//
-// if (clickCounter === 25){
-//   picContainer.remonveEventListener('click', handleClick);
-//   return alert('You ran out of clicks!'); S
+function renderList() {
+ for (var i=0; i < allProducts.length; i++){
+   viewed[i] = allProducts[i].views;
+   clicked[i] = allProducts[i].clicks;
+ }
+}
 
+// var myChart = new Chart({})
+function makeChart() {
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: names,
+        datasets: [{
+            label: ('# of clicks'),
 
+            data: clicked,
+            backgroundColor: [
+                'rgba(255, 55,34,0.2)',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy',
+                'navy'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      height: 200,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
 
-// var displayChart = document.getElementById("myChart").getContext("2d");
-// var createChart = new Chart (displayChart, {
-//   type: 'bar',
-//   data: {
-//     labels: ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
-//     datasets: [{
-//       label: 'Number of Clicks',
-//       yAxisGroup: '1',
-//       data: clicked,
-//       backgroundColor: [
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//         'rgb(128, 223, 255)',
-//       ],
-//       borderColor: [
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//         'rgb(0, 51, 102)',
-//       ],
-//       borderWidth: 1,
-//     },{
-//       label: 'Number of Views',
-//       type: "bar",
-//       yAxisGroup: "2",
-//       data: viewed,
-//       backgroundColor: [
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//         'rgb(26, 255, 102)',
-//       ],
-//       borderColor: [
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//         'rgb(0, 102, 34)',
-//       ],
-//       borderWidth: 1,
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxis: [{
-//         ticks: {
-//           beginAtZero:true
-//         }
-//       }]
-//     }
-//   }
-// });
+}
 
 if (localStorage.allProducts) {
   allProducts = JSON.parse(localStorage.allProducts);
@@ -269,3 +220,4 @@ if (localStorage.allProducts) {
 createThreePics();
 
 picContainer.addEventListener('click', handleClick);
+displayButton.addEventListener('click', handleGenerateButton);
