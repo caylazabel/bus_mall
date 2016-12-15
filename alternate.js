@@ -106,17 +106,12 @@ function handleClick(event) {
   } else {
 
       document.getElementById('display-button').style.visibility = 'visible';
-      return alert('You outta clicks dude!');
+      return alert('You are outta clicks!');
     }
 
-    // picContainer.removeEventListener('click', handleClick);
 
-  // localStorage.setItem('allProducts', JSON.stringify(allProducts));
+  localStorage.setItem('allProducts', JSON.stringify(allProducts));
 
-  // after 25, remove event listeners on picNames
-  // after 25, show "Results" button
-  // clear old images
-  // display 3 new images
   createThreePics();
 }
 
@@ -125,13 +120,6 @@ function handleGenerateButton() {
   makeChart ();
 }
 
-
-// ++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++
-// CODE THAT RUNS ON PAGE LOAD
-// (EXECUTE ACTIONS)
-// ++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++
 
 
 //chart below//
@@ -161,39 +149,54 @@ function makeChart() {
 
             data: clicked,
             backgroundColor: [
-                'rgba(255, 55,34,0.2)',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy',
-                'navy'
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)',
+                'rgba(204, 0, 0, 0.5)',
+                'rgba(51, 51, 51, 0.5)'
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0)'
             ],
             borderWidth: 1
         }]
     },
     options: {
-      height: 200,
+      height: 175,
         scales: {
             yAxes: [{
                 ticks: {
