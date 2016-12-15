@@ -2,6 +2,7 @@
 
 
 var picContainer = document.getElementById('picContainer');
+var picList = document.getElementById('picList');
 var left = document.getElementById('left');
 var center = document.getElementById('center');
 var right = document.getElementById('right');
@@ -65,7 +66,7 @@ function arrayOfThreeNumbers() {
   }
 }
 
-
+renderList();
 
 function createThreePics() {
   arrayOfThreeNumbers();
@@ -77,6 +78,18 @@ function createThreePics() {
   right.src = allProducts[newArray[2]].filepath;
   allProducts[newArray[2]].views +=1;
 
+}
+
+function displayList() {
+  picList.innerHTML = '';
+  for (var i = 0; i < allProducts.length; i++) {
+    var liEl = document.createElement('li');
+    var liEl2 = document.createElement('li');
+    liEl.textContent = allProducts[i].name + ' has been clicked ' + allProducts[i].clicks + ' times';
+    liEl2.textContent = allProducts[i].name + ' has been viewed ' + allProducts[i].views + ' times';
+    picList.appendChild(liEl);
+    picList.appendChild(liEl2);
+  }
 }
 
 function handleClick(event) {
@@ -113,11 +126,24 @@ function handleClick(event) {
   localStorage.setItem('allProducts', JSON.stringify(allProducts));
 
   createThreePics();
+  displayList();
 }
 
 function handleGenerateButton() {
-  renderList();
   makeChart ();
+}
+
+var picList = document.getElementById('picList');
+function displayList() {
+  picList.innerHTML = '';
+  for (var i = 0; i < allProducts.length; i++) {
+    var liEl = document.createElement('li');
+    var liEl2 = document.createElement('li');
+    liEl.textContent = allProducts[i].name + ' has been clicked ' + allProducts[i].clicks + ' times';
+    liEl2.textContent = allProducts[i].name + ' has been viewed ' + allProducts[i].views + ' times';
+    picList.appendChild(liEl);
+    picList.appendChild(liEl2);
+  }
 }
 
 
